@@ -41,4 +41,9 @@ let mrk= L.marker([stephansdom.lat, stephansdom.lng]).addTo(sightlayer);
 
 sightlayer.addTo(map);
 //Maßstab hinzufügen
-L.control.scale().addTo(map);
+L.control.scale({
+    imperial:false,
+}).addTo(map);
+
+L.control.fullscreen().addTo(map);
+//map.addControl(L.controll.fullscreen());
