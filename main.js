@@ -18,17 +18,18 @@ layer:[
 ]
 });
 
-let layerControl= L.control.layer({
-    "BasemapAT Grau": startlayer,
-    "Basmap Standard": L.tileLayer.provider("BasmapAT.basemap"),
+let layerControl = L.control.layers({
+    "BasemapAT Grau": startLayer,
+    "Basemap Standard": L.tileLayer.provider("BasemapAT.basemap"),
     "Basemap High-DPI": L.tileLayer.provider("BasemapAT.highdpi"),
+    "Basemap Gelände": L.tileLayer.provider("BasemapAT.terrain"),
+    "Basemap Oberfläche": L.tileLayer.provider("BasemapAT.surface"),
     "Basemap Orthofoto": L.tileLayer.provider("BasemapAT.orthofoto"),
-    // im ganzen 7 layer noch hinzu!
-      "Basemap mit Orthofoto und Beschriftung":L.layerGroup([
-        L.tileLayer.provider(Basemap.overlay),
-
-      ])  
-        
+    "Basemap Beschriftung": L.tileLayer.provider("BasemapAT.overlay"),
+    "Basemap mit Orthofoto und Beschriftung": L.layerGroup([
+        L.tileLayer.provider("BasemapAT.orthofoto"),
+        L.tileLayer.provider("BasemapAT.overlay"),
+    ])
 }).addTo(map);
 
 layerControl.expand();
