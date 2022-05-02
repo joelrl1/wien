@@ -8,14 +8,14 @@ title: "Stephansdom",
 
 };
 
-let startLayer =L.tileLayer.provider("BasemapAT.grau");
+let startLayer = L.tileLayer.provider("BasemapAT.grau");
 
-let map = L.map("map",{
-center:[ stephansdom.lat, stephansdom.lng], 
-zoom:12,
-layer:[
- startLayer
-]
+let map = L.map("map", {
+    center: [ stephansdom.lat, stephansdom.lng ],
+    zoom: 12,
+    layers: [
+        startLayer
+    ],
 });
 
 let layerControl = L.control.layers({
