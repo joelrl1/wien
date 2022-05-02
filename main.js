@@ -8,13 +8,13 @@ title: "Stephansdom",
 
 };
 
-let startlayer =L.tileLayer.provider("BasemapAT.grau").addTo(map);
+let startLayer =L.tileLayer.provider("BasemapAT.grau");
 
 let map = L.map("map",{
 center:[ stephansdom.lat, stephansdom.lng], 
 zoom:12,
 layer:[
-    startlayer
+ startLayer
 ]
 });
 
@@ -41,6 +41,7 @@ layerControl.addOverlay(sightlayer, "Sehenswürdigkeiten");
 let mrk= L.marker([stephansdom.lat, stephansdom.lng]).addTo(sightlayer);
 
 sightlayer.addTo(map);
+
 //Maßstab hinzufügen
 L.control.scale({
     imperial:false,
