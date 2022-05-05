@@ -61,7 +61,7 @@ async function loadSites(url){
 
  let response = await fetch (url);
  let geojson = await response.json();
- console.log(geojson);
+// console.log(geojson);
 
  let overlay = L.featureGroup();
 
