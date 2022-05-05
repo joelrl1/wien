@@ -70,8 +70,12 @@ layerControl.addOverlay(overlay, "Sehenswürdigkeiten");
 overlay.addTo(map);
 
  L.geoJSON(geojson,{
-     pointToLayer: function(geojsonPoint, latlng){
-     return L.marker(latlng);
+     pointToLayer: function(geoJsonPoint, latlng){
+         //console.log(geojson.properties.NAME);
+         let popup = `
+         <strong>${geoJsonPoint.properties.NAME}</strong>
+         `;
+     return L.marker(latlng).bindPopup(popup);
     }
  }).addTo(overlay);
 }
