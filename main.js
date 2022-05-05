@@ -73,7 +73,13 @@ overlay.addTo(map);
      pointToLayer: function(geoJsonPoint, latlng){
          //console.log(geojson.properties.NAME);
          let popup = `
+         <img src= "${geoJsonPoint.properties.THUMBNAIL}"
+         alt=""><br>
          <strong>${geoJsonPoint.properties.NAME}</strong>
+         <hr>
+         Adresse: ${geoJsonPoint.properties.ADRESSE} <br>
+         <a href="${geoJsonPoint.properties.WEITERE_INF}
+         ">Weblink</a>
          `;
      return L.marker(latlng).bindPopup(popup);
     }
