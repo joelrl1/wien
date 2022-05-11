@@ -185,8 +185,10 @@ async function loadHotel(url){
        Kategorie ${geoJsonPoint.properties.KATEGORIE_TXT} <br>
        Adresse ${geoJsonPoint.properties.ADRESSE} <br>
        Tel Nr. ${geoJsonPoint.properties.KONTAKT_TEL} <br>
-       <a href=" ${geoJsonPoint.properties.KONTAKT_EMAIL}"> E-Mail</a> <br>
-       <a href=" ${geoJsonPoint.properties.WEBLINK1}"> Weblink</a> <br>
+       <a href=mailto:"${geoJsonPoint.properties.KONTAKT_EMAIL}">E-Mail</a> <br>
+       <a href=" ${geoJsonPoint.properties.WEBLINK1}">Weblink</a> <br>
+   
+    
 
 
     
