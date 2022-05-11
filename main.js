@@ -169,7 +169,35 @@ async function loadHotel(url){
    
    layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
    overlay.addTo(map);
-   
-    L.geoJSON(geojson).addTo(overlay);
+
+   L.geoJSON(geojson,{
+    pointToLayer: function(geoJsonPoint, latlng){
+        //console.log(geojson.properties.NAME);
+        let popup = `
+    
+        <strong>${geoJsonPoint.properties.BETRIEB}</strong>  <br>
+       Bertriebsart ${geoJsonPoint.properties.BERTRIEBSART_TXT} <br>
+       Kategorie ${geoJsonPoint.properties.KATEGORIE_TXT} <br>
+       Adresse ${geoJsonPoint.properties.ADRESSE} <br>
+       Tel Nr. ${geoJsonPoint.properties.KONTAKT_TEL} <br>
+       <a href=" ${geoJsonPoint.properties.KONTAKT_EMAIL}"> E-Mail</a> <br>
+       <a href=" ${geoJsonPoint.properties.WEBLINK}"> Weblink</a> <br>
+
+
+    
+        `;
+    return L.marker(latlng, {
+
+
+        icon: L.icon({
+            iconUrl: `icons/hotel.png`,
+            iconAnchor:[16,37],
+            popupAnchor:[0,-37]
+        })
+    }).bindPopup(popup);
    }
- //  loadHotel("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:UNTERKUNFTOGD&srsName=EPSG:4326&outputFormat=json");
+}).addTo(overlay);
+   }
+   
+ 
+   loadHotel("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:UNTERKUNFTOGD&srsName=EPSG:4326&outputFormat=json");
