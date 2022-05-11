@@ -82,6 +82,9 @@ overlay.addTo(map);
          ">Weblink</a>
          `;
      return L.marker(latlng, {
+
+
+
          icon: L.icon({
              iconUrl: "icons/photo.png",
              iconAnchor:[16,37],
@@ -170,13 +173,15 @@ async function loadHotel(url){
    layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
    overlay.addTo(map);
 
+
+
    L.geoJSON(geojson,{
     pointToLayer: function(geoJsonPoint, latlng){
         //console.log(geojson.properties.NAME);
         let popup = `
     
         <strong>${geoJsonPoint.properties.BETRIEB}</strong>  <br>
-       Bertriebsart ${geoJsonPoint.properties.BERTRIEBSART_TXT} <br>
+       Bertriebsart ${geoJsonPoint.properties.BETRIEBSART_TXT} <br>
        Kategorie ${geoJsonPoint.properties.KATEGORIE_TXT} <br>
        Adresse ${geoJsonPoint.properties.ADRESSE} <br>
        Tel Nr. ${geoJsonPoint.properties.KONTAKT_TEL} <br>
@@ -186,15 +191,46 @@ async function loadHotel(url){
 
     
         `;
-    return L.marker(latlng, {
+
+      if(geoJsonPoint.properties.BETRIEBSART == "H")
+      {
+        return L.marker(latlng, {
 
 
-        icon: L.icon({
-            iconUrl: `icons/hotel.png`,
-            iconAnchor:[16,37],
-            popupAnchor:[0,-37]
-        })
-    }).bindPopup(popup);
+            icon: L.icon({
+                iconUrl: `icons/hotel.png`,
+                iconAnchor:[16,37],
+                popupAnchor:[0,-37]
+            })
+        }).bindPopup(popup);
+      }
+      else if(geoJsonPoint.properties.BETRIEBSART == "P")
+      {
+        return L.marker(latlng, {
+
+
+            icon: L.icon({
+                iconUrl: `icons/pension.png`,
+                iconAnchor:[16,37],
+                popupAnchor:[0,-37]
+            })
+        }).bindPopup(popup);
+      }
+
+      else 
+      {
+        return L.marker(latlng, {
+
+
+            icon: L.icon({
+                iconUrl: `icons/apartment.png`,
+                iconAnchor:[16,37],
+                popupAnchor:[0,-37]
+            })
+        }).bindPopup(popup);
+      }
+
+    
    }
 }).addTo(overlay);
    }
