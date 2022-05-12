@@ -230,7 +230,7 @@ async function loadHotel(url){
     let overlay = L.markerClusterGroup({
 
         disableClusteringAtZoom:17
-        
+
 
     });
    
@@ -242,6 +242,8 @@ async function loadHotel(url){
    L.geoJSON(geojson,{
     pointToLayer: function(geoJsonPoint, latlng){
         //console.log(geojson.properties.NAME);
+        let searchList= document.querySelector("#searchList");
+        searchList.innerHTML += ` <option value ="${geoJsonPoint.properties.BETRIEB}"></option>`;
         let popup = `
     
         <strong>${geoJsonPoint.properties.BETRIEB}</strong>  <br>
