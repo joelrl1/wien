@@ -190,7 +190,18 @@ async function loadZones(url){
    layerControl.addOverlay(overlay, "Fußgängerzonen Wien");
    overlay.addTo(map);
    
-    L.geoJSON(geojson).addTo(overlay);
+    L.geoJSON(geojson).bindPopup(function (layer){
+        return `
+        <h4> Fußgängerzone  ${layer.feature.properties.ADRESSE} </h4>
+        <p> ${layer.feature.properties.ZEITRAUM || ""} </p>
+
+        <p> ${layer.feature.properties.AUSN_TEXT || ""}   </p>
+        
+        `;
+
+
+
+    }).addTo(overlay);
    }
   // loadZones("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json");
 
@@ -218,7 +229,7 @@ async function loadHotel(url){
        Kategorie ${geoJsonPoint.properties.KATEGORIE_TXT} <br>
        Adresse ${geoJsonPoint.properties.ADRESSE} <br>
        Tel Nr. ${geoJsonPoint.properties.KONTAKT_TEL} <br>
-       <a href=mailto:"${geoJsonPoint.properties.KONTAKT_EMAIL}">E-Mail</a> <br>
+       <a href=mailto:${geoJsonPoint.properties.KONTAKT_EMAIL}>E-Mail</a> <br>
        <a href=" ${geoJsonPoint.properties.WEBLINK1}">Weblink</a> <br>
    
     
