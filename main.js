@@ -147,9 +147,9 @@ async function loadLines(url){
 
             let colors={
                 "Red Line": "#FF$136",
-                "Yellow Lane": "#FFDC00",
+                "Yellow Line": "#FFDC00",
                 "Blue Line": "#0074D9",
-                "GreenLine":"#2ECC40",
+                "Green Line":"#2ECC40",
                 "Grey Line": "#AAAAAA",
                 "Orange Line": "#FF851B"
 
@@ -158,7 +158,9 @@ async function loadLines(url){
             return {
 
 
-                color: `${colors[feature.properties.LINE_NAME]}`
+                color: `${colors[feature.properties.LINE_NAME]}`,
+                weight: 4,
+                dashArray:[10,6]
             }
 
         }
