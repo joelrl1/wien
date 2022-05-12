@@ -227,7 +227,12 @@ async function loadHotel(url){
     let geojson = await response.json();
    // console.log(geojson);
    
-    let overlay = L.featureGroup();
+    let overlay = L.markerClusterGroup({
+
+        disableClusteringAtZoom:17
+        
+
+    });
    
    layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
    overlay.addTo(map);
