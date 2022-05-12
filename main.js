@@ -239,7 +239,7 @@ async function loadHotel(url){
 
 
 
-   L.geoJSON(geojson,{
+  let hotelLayer= L.geoJSON(geojson,{
     pointToLayer: function(geoJsonPoint, latlng){
         //console.log(geojson.properties.NAME);
         let searchList= document.querySelector("#searchList");
@@ -307,6 +307,20 @@ console.log(form.suchen);
 form.suchen.onclick =function(){
 
     console.log(form.hotel.value);
+    hotelLayer.eachLayer(function(marker){
+
+       
+
+        if(form.hotel.value == marker.feature.properties.BETRIEB)
+        {
+            console.log(marker)
+        console.log(marker.getLatLng())
+        map.setView(marker.getLatLng(),17);
+        marker.openPopup();
+       // console.log(marker.getPopup())
+       // console.log(marker.feature.properties.BETRIEB)
+        }
+    })
 }
    }
    
