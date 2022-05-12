@@ -225,6 +225,14 @@ async function loadHotel(url){
 
     let response = await fetch (url);
     let geojson = await response.json();
+
+    //hotels nach namen sortieren
+
+    geojson.features.sort(function(a, b) {
+
+        return a.properties.BETRIEB.toLowerCase() > b.properties.BETRIEB.toLowerCase()
+    })
+
    // console.log(geojson);
    
     let overlay = L.markerClusterGroup({
