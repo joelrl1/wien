@@ -301,6 +301,13 @@ async function loadHotel(url){
     
    }
 }).addTo(overlay);
+
+let form = document.querySelector("#searchForm");
+console.log(form.suchen);
+form.suchen.onclick =function(){
+
+    console.log(form.hotel.value);
+}
    }
    
  
